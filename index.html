@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My iPoster Visualizations</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; max-width: 800px; margin: 40px auto; padding: 20px; background-color: #f9f9f9; color: #333; }
+        h1 { border-bottom: 2px solid #007bff; padding-bottom: 10px; }
+        .card { background: white; border: 1px solid #ddd; padding: 20px; margin-bottom: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+        .card h3 { margin-top: 0; }
+        .url-box { background: #eef; padding: 10px; border: 1px solid #ccd; border-radius: 4px; font-family: monospace; word-break: break-all; margin: 10px 0; }
+        button { background-color: #007bff; color: white; border: none; padding: 8px 12px; border-radius: 4px; cursor: pointer; font-size: 14px; }
+        button:hover { background-color: #0056b3; }
+        a.preview-link { display: inline-block; margin-top: 10px; text-decoration: none; color: #007bff; font-weight: bold; }
+        a.preview-link:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+
+    <h1>iPoster Asset Hub</h1>
+    <p>Below are the direct links to embed into your iPoster "IFrame Properties" window.</p>
+
+    <div id="file-list"></div>
+
+    <script>
+        // --- EDIT YOUR FILENAMES HERE ---
+        // Replace these names with the exact names of your uploaded HTML files
+        const myFiles = [
+            "TIC313408643_dual_panel_viewer.html", 
+            "TIC313408643_split_aperture_viewer.html", 
+            "frame_1_mini_aij.html"
+        ];
+        // --------------------------------
+        
+        const listContainer = document.getElementById('file-list');
+        
+        // This calculates the current folder's web address automatically
+        const baseUrl = window.location.href.substring(0, window.location.href.lastIndexOf('/')) + "/";
+
+        myFiles.forEach((filename, index) => {
+            const fullUrl = baseUrl + filename;
+            
+            // Create the HTML card for each file
+            const card = document.createElement('div');
+            card.className = 'card';
+            card.innerHTML = `
+                <h3>Visualization ${index + 1}: ${filename}</h3>
+                <p><strong>iPoster URL (Copy this):</strong></p>
+                <div class="url-box" id="url-${index}">${fullUrl}</div>
+                <button onclick="copyToClipboard('url-${index}')">Copy URL</button>
+                <br>
+                <a href="${filename}" target="_blank" class="preview-link">Open Preview in New Tab &rarr;</a>
+            `;
+            listContainer.appendChild(card);
+        });
+
+        // Helper function to copy text
+        function copyToClipboard(elementId) {
+            const text = document.getElementById(elementId).innerText;
+            navigator.clipboard.writeText(text).then(() => {
+                alert("URL copied! Paste this into the iPoster IFrame box.");
+            });
+        }
+    </script>
+
+</body>
+</html>
