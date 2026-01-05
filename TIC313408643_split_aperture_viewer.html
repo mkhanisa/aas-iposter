@@ -97,15 +97,15 @@
         <!-- Legend -->
         <div class="legend">
             <div class="legend-item">
-                <span class="legend-marker" style="color: #002E2E;">✕</span>
+                <span class="legend-marker" style="color: #0074D9;">✕</span>
                 <span>Star A (TIC 313408643)</span>
             </div>
             <div class="legend-item">
-                <span class="legend-marker" style="color: #4D004D;">✕</span>
+                <span class="legend-marker" style="color: #ff0000;">✕</span>
                 <span>Star B (TIC 1965256662)</span>
             </div>
             <div class="legend-item">
-                <span class="legend-marker" style="color: #0F1F87;">●</span>
+                <span class="legend-marker" style="color: #00ff00;">●</span>
                 <span>Centroid</span>
             </div>
             <div class="legend-item">
@@ -139,9 +139,9 @@
         const REVERSE_COLORMAP = false;      // TWEAK: false = white stars on dark bg
         const STAR_MARKER_SIZE = 14;         // TWEAK: Star marker size
         const STAR_MARKER_WIDTH = 2;         // TWEAK: Cross line thickness (thinner = smaller)
-        const STAR_A_COLOR = '#002E2E';      // TWEAK: Star A color (coral red)
-        const STAR_B_COLOR = '#4D004D';      // TWEAK: Star B color (teal)
-        const CENTROID_COLOR = '#0F1F87';    // TWEAK: Centroid color
+        const STAR_A_COLOR = '#0074D9';      // TWEAK: Star A color (darker cyan)
+        const STAR_B_COLOR = '#FF0000';      // TWEAK: Star B color (darker magenta)
+        const CENTROID_COLOR = '#00FF00';    // TWEAK: Centroid color
         
         let currentFrame = 0;
         
@@ -270,8 +270,7 @@
                 y: semiA.map(p => p.y),
                 mode: 'lines',
                 type: 'scatter',
-                fill: 'toself',
-                fillcolor: 'rgba(0, 255, 255, 0.15)',
+                    // Outline only, no fill
                 line: { color: '#00ffff', width: 2.5 },
                 name: 'Aperture A',
                 hoverinfo: 'skip'
@@ -284,8 +283,7 @@
                 y: semiB.map(p => p.y),
                 mode: 'lines',
                 type: 'scatter',
-                fill: 'toself',
-                fillcolor: 'rgba(255, 0, 255, 0.15)',
+                    // Outline only, no fill
                 line: { color: '#ff00ff', width: 2.5 },
                 name: 'Aperture B',
                 hoverinfo: 'skip'
